@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Khitanan - Sticker Theme</title>
+    <title>Azlan Syarahil Iskandar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Bubblegum+Sans&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
@@ -21,18 +21,20 @@
             --accent-yellow: #ffd166;
             --accent-green: #06d6a0;
             --accent-pink: #ff6b9d;
+            --whatsapp-green: #25D366;
             --shadow-color: rgba(0, 0, 0, 0.15);
         }
 
         body {
             font-family: 'Nunito', sans-serif;
-            background: linear-gradient(135deg, #9bcffd 0%, #c7efff 100%);
+            background: linear-gradient(135deg, #6dd3e7 0%, #c7efff 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
             overflow-x: hidden;
+            position: relative;
         }
 
         .invitation-container {
@@ -40,6 +42,7 @@
             width: 100%;
             position: relative;
             padding: 20px;
+            z-index: 20;
         }
 
         /* STICKER STYLES - VARIASI BENTUK */
@@ -120,7 +123,6 @@
             font-family: 'Fredoka One', cursive;
             font-size: 3.5rem;
             color: rgb(0, 81, 255);
-            outline-color: white 1px solid;
             text-align: center;
             text-shadow: 3px 3px 0 var(--shadow-color);
             margin-bottom: 10px;
@@ -263,6 +265,77 @@
             margin-bottom: 10px;
         }
 
+        /* FLOATING WHATSAPP BUTTON */
+        .whatsapp-float {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .whatsapp-float::after {
+            content: 'Konfirmasi via WA';
+            position: absolute;
+            right: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+        }
+
+        .whatsapp-float:hover::after {
+            opacity: 1;
+        }
+
+        .bocil {
+            position: fixed;
+            width: 120px;
+            height: auto;
+            bottom: 80px;
+            right: 30px;
+            z-index: 999;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-whatsapp {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
         /* RSVP FORM */
         .rsvp-form {
             background: white;
@@ -337,54 +410,153 @@
             box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
         }
 
-        /* DECORATIVE ELEMENTS */
-        .floating-sticker {
-            position: absolute;
+        /* AWAN YANG DIPERCEPAT */
+        .cloud {
+            position: fixed;
             z-index: 1;
             pointer-events: none;
-            animation: float 6s ease-in-out infinite;
+            animation: clouds linear infinite;
+            border-radius: 10px;
+            width: 54px;
+            height: 5px;
+            background: #f7e7eb;
         }
 
-        .cloud-sticker {
-            width: 120px;
-            height: 80px;
-            background: white;
-            border-radius: 50px;
-            box-shadow: 4px 4px 0 var(--shadow-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--primary-blue);
+        .cloud.tiny {
+            transform: scale(0.5);
         }
 
-        .paperplane-sticker {
-            width: 100px;
-            height: 60px;
-            background: linear-gradient(135deg, #ffd166, #ffb347);
-            clip-path: polygon(0% 50%, 40% 0%, 100% 50%, 40% 100%);
-            transform: rotate(45deg);
-            box-shadow: 4px 4px 0 var(--shadow-color);
+        .cloud.small {
+            transform: scale(1);
         }
 
-        .balloon-sticker {
-            width: 60px;
-            height: 80px;
-            background: var(--accent-pink);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            position: relative;
-            box-shadow: 4px 4px 0 var(--shadow-color);
+        .cloud.normal {
+            transform: scale(2);
         }
 
-        .balloon-sticker::after {
-            content: '';
+        .cloud.large {
+            transform: scale(3);
+        }
+
+        .cloud div {
+            box-shadow: inset -2px -3px 0 0 #f7e7eb;
             position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 20px;
-            background: #ccc;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            left: -3px;
+            bottom: 0;
+            background: #fafbf0;
+            z-index: 10;
+        }
+
+        .cloud div:first-child + div {
+            transform: scale(1.6);
+            margin: 0 0 4px 13px;
+            z-index: 9;
+        }
+
+        .cloud div:first-child + div + div {
+            transform: scale(2.4);
+            margin: 0 0 9px 32px;
+            z-index: 8;
+        }
+
+        .cloud div:first-child + div + div + div {
+            transform: scale(1.3);
+            margin: 0 0 2px 50px;
+            z-index: 7;
+        }
+
+        /* ANIMASI AWAN YANG DIPERCEPAT DAN DEKAT */
+        @keyframes clouds {
+            0% {
+                left: -10%; /* DARI -10% bukan -100% */
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                left: 110%; /* KE 110% bukan 120% */
+                opacity: 0;
+            }
+        }
+
+        /* POSISI DAN DURASI AWAN YANG DIPERCEPAT */
+        .cloud-1 {
+            animation-duration: 60s; /* DIPERCEPAT dari 263s */
+            top: 15%;
+            animation-delay: 0s;
+        }
+
+        .cloud-2 {
+            animation-duration: 45s; /* DIPERCEPAT dari 99s */
+            top: 25%;
+            animation-delay: 5s;
+        }
+
+        .cloud-3 {
+            animation-duration: 70s; /* DIPERCEPAT dari 142s */
+            top: 40%;
+            animation-delay: 2s;
+        }
+
+        .cloud-4 {
+            animation-duration: 50s; /* DIPERCEPAT dari 152s */
+            top: 10%;
+            animation-delay: 8s;
+        }
+
+        .cloud-5 {
+            animation-duration: 80s; /* DIPERCEPAT dari 215s */
+            top: 65%;
+            animation-delay: 3s;
+        }
+
+        .cloud-6 {
+            animation-duration: 55s; /* DIPERCEPAT dari 139s */
+            top: 55%;
+            animation-delay: 6s;
+        }
+
+        .cloud-7 {
+            animation-duration: 40s; /* DIPERCEPAT dari 109s */
+            top: 80%;
+            animation-delay: 1s;
+        }
+
+        .cloud-8 {
+            animation-duration: 65s; /* DIPERCEPAT dari 121s */
+            top: 30%;
+            animation-delay: 4s;
+        }
+
+        .cloud-9 {
+            animation-duration: 48s; /* DIPERCEPAT dari 101s */
+            top: 70%;
+            animation-delay: 7s;
+        }
+
+        .cloud-10 {
+            animation-duration: 58s; /* DIPERCEPAT dari 126s */
+            top: 45%;
+            animation-delay: 9s;
+        }
+
+        .cloud-11 {
+            animation-duration: 42s; /* DIPERCEPAT dari 96s */
+            top: 20%;
+            animation-delay: 10s;
+        }
+
+        .cloud-12 {
+            animation-duration: 35s; /* DIPERCEPAT dari 83s */
+            top: 75%;
+            animation-delay: 0s;
         }
 
         /* ANIMATIONS */
@@ -441,9 +613,28 @@
                 grid-template-columns: 1fr;
             }
             
-            .floating-sticker {
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            img {
+                bottom: 70em;
+                right: 20px;
+            }
+            
+            .whatsapp-float::after {
                 display: none;
             }
+
+            .bocil {
+                width: 100px;
+                bottom: 70px;
+            }
+            
         }
 
         @media (max-width: 480px) {
@@ -472,35 +663,105 @@
     </style>
 </head>
 <body>
-    <div class="invitation-container">
-        <!-- Floating Stickers -->
-        <div class="floating-sticker" style="top: 50px; left: 5%; animation-delay: 0s;">
-            <div class="cloud-sticker">
-                <i class="fas fa-cloud"></i>
-            </div>
-        </div>
-        
-        <div class="floating-sticker" style="top: 150px; right: 8%; animation-delay: 1s;">
-            <div class="paperplane-sticker"></div>
-        </div>
-        
-        <div class="floating-sticker" style="bottom: 200px; left: 10%; animation-delay: 2s;">
-            <div class="balloon-sticker"></div>
-        </div>
-        
-        <div class="floating-sticker" style="bottom: 100px; right: 12%; animation-delay: 3s;">
-            <div class="cloud-sticker">
-                <i class="fas fa-star"></i>
-            </div>
-        </div>
+    <!-- AWAN BACKGROUND YANG DIPERCEPAT -->
+    <div class="cloud large cloud-1">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 
+    <div class="cloud normal cloud-2">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="cloud small cloud-3">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="cloud tiny cloud-4">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="cloud large cloud-5">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="cloud normal cloud-6">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="cloud small cloud-7">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="cloud tiny cloud-8">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="cloud small cloud-9">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="cloud normal cloud-10">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="cloud tiny cloud-11">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="cloud small cloud-12">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <img src="bocil.png" alt="" class="bocil">
+    <div class="whatsapp-float" id="whatsappFloatBtn">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <div class="invitation-container">
         <!-- Header Section -->
         <div class="header-section text-center">
             <h1 class="main-title">🎉SYUKURAN KHITANAN🎉</h1>
             
             <div class="mt-20">
                 <div class="child-name-container pulse">
-                    AZLAN FAWWAZ AL-HAQ
+                    Azlan Syarahil Iskandar
                 </div>
             </div>
             
@@ -572,7 +833,6 @@
 
         <!-- Action Section -->
         <div class="action-section">
-            
             <div class="action-grid">
                 <div class="action-item" onclick="window.open('https://goo.gl/maps/example', '_blank')" 
                      style="--accent-color: var(--accent-green);">
@@ -588,11 +848,11 @@
                     <div class="action-icon" style="color: var(--primary-blue);">
                         <i class="fas fa-check-circle"></i>
                     </div>
-                    <div class="action-title">Konfirmasi Hadir</div>
-                    <p style="color: #666; font-size: 0.9rem;">Kirim konfirmasi via email langsung</p>
+                    <div class="action-title">Konfirmasi Email</div>
+                    <p style="color: #666; font-size: 0.9rem;">Kirim konfirmasi via email</p>
                 </div>
                 
-                <div class="action-item" onclick="window.location.href='mailto:keluarga@contoh.com?subject=Ucapan Khitanan Arya';" 
+                <div class="action-item" onclick="window.location.href='mailto:keluarga@contoh.com?subject=Ucapan Khitanan Azlan';" 
                      style="--accent-color: var(--accent-pink);">
                     <div class="action-icon" style="color: var(--accent-pink);">
                         <i class="fas fa-heart"></i>
@@ -709,8 +969,8 @@
                 const message = document.getElementById('message').value;
                 
                 // Create email content
-                const subject = `Konfirmasi Kehadiran Khitanan Arya - ${name}`;
-                const body = `Konfirmasi Kehadiran untuk Khitanan Arya Fawwaz Al-Haq
+                const subject = `Konfirmasi Kehadiran Khitanan Azlan - ${name}`;
+                const body = `Konfirmasi Kehadiran untuk Khitanan Azlan Fawwaz Al-Haq
 
 Nama Lengkap: ${name}
 Alamat Email: ${email}
@@ -740,6 +1000,23 @@ Terima kasih atas konfirmasinya!`;
                     confirmationMessage.style.display = 'none';
                     rsvpForm.style.display = 'none';
                 }, 5000);
+            });
+            
+            // WhatsApp Float Button Functionality
+            const whatsappFloatBtn = document.getElementById('whatsappFloatBtn');
+            whatsappFloatBtn.addEventListener('click', function() {
+                const phoneNumber = "6281234567890"; // GANTI dengan nomor WhatsApp yang diinginkan
+                const message = encodeURIComponent(
+                    `Halo, saya ingin mengkonfirmasi kehadiran untuk acara Khitanan Azlan Fawwaz Al-Haq.\n\n` +
+                    `Nama: \n` +
+                    `Kehadiran: (Hadir/Mungkin/Tidak) \n` +
+                    `Jumlah Tamu: \n` +
+                    `Pesan: \n\n` +
+                    `Terima kasih.`
+                );
+                
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+                window.open(whatsappUrl, '_blank');
             });
             
             // Add random floating animations to stickers
